@@ -1,0 +1,41 @@
+# docker compose up -d                                  # db + api + phoenix
+# docker compose run --rm api python -m regrag.ingest   # first run: download, chunk, embed
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: regrag
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-regrag}
+      POSTGRES_DB: regrag
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U regrag"]
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    environment:
+      PHOENIX_WORKING_DIR: /phoenix
+    volumes: [phoenix:/phoenix]
+    ports: ["127.0.0.1:6006:6006"]   # trace UI; keep private (SSH tunnel / auth proxy)
+    restart: unless-stopped
+
+  api:
+    build: { context: ., dockerfile: docker/Dockerfile }
+    image: regrag-api
+    env_file: [.env]
+    environment:
+      DATABASE_URL: postgresql://regrag:${POSTGRES_PASSWORD:-regrag}@db:5432/regrag
+      PHOENIX_COLLECTOR_ENDPOINT: http://phoenix:6006
+      DATA_DIR: /app/data
+    volumes: [./data:/app/data]
+    ports: ["127.0.0.1:${API_PORT:-8000}:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  phoenix:
