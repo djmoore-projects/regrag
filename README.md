@@ -1,6 +1,6 @@
 # RegRAG — cited answers over U.S. financial regulations
 
-[![Tests](https://github.com/djmoore-projects/oci-rag-chatbot/actions/workflows/tests.yml/badge.svg)](https://github.com/djmoore-projects/oci-rag-chatbot/actions/workflows/tests.yml)
+[![Tests](https://github.com/djmoore-projects/regrag/actions/workflows/tests.yml/badge.svg)](https://github.com/djmoore-projects/regrag/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 
 A knowledge assistant over **Regulation Z (Truth in Lending), Regulation E (Electronic Fund Transfers), and the Bank
