@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRAG — cited answers over U.S. financial regulations</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --panel: #ffffff; --ink: #1b1d21; --muted: #6a6f78; --line: #e3e3df;
+    --accent: #1f5fbf; --accent-soft: #e6eefb; --warn: #9a5b00; --warn-soft: #fff4e0;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121417; --panel: #1a1d22; --ink: #e8e9ec; --muted: #9aa0aa; --line: #2b3038;
+            --accent: #7aa7ff; --accent-soft: #1f2b40; --warn: #ffbf66; --warn-soft: #3a2c14; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  header { padding: 20px 16px 8px; max-width: 1200px; margin: 0 auto; }
+  header h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; }
+  main { max-width: 1200px; margin: 0 auto; padding: 8px 16px 40px;
+         display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 18px; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  form { display: flex; gap: 8px; flex-wrap: wrap; }
+  textarea { flex: 1 1 100%; min-height: 64px; resize: vertical; padding: 10px 12px; font: inherit;
+             color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
+  select, button { font: inherit; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line);
+                   background: var(--bg); color: var(--ink); }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); cursor: pointer; }
+  button.primary:disabled { opacity: .6; cursor: wait; }
+  .examples { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .examples button { font-size: 12.5px; padding: 4px 9px; cursor: pointer; color: var(--muted); }
+  #answer { margin-top: 16px; white-space: pre-wrap; }
+  #answer:empty { display: none; }
+  sup.cite { display: inline-block; margin: 0 1px; padding: 0 5px; font-size: 11px; line-height: 16px;
+             border-radius: 4px; background: var(--accent-soft); color: var(--accent); cursor: pointer;
+             vertical-align: super; font-weight: 600; }
+  .abstain { background: var(--warn-soft); color: var(--warn); padding: 10px 12px; border-radius: 8px; }
+  .meta { margin-top: 12px; color: var(--muted); font-size: 12.5px; display: flex; gap: 14px; flex-wrap: wrap; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; }
+  .src { border-top: 1px solid var(--line); padding: 10px 0; }
+  .src:first-of-type { border-top: 0; padding-top: 0; }
+  .src.active { background: var(--accent-soft); margin: 0 -8px; padding: 10px 8px; border-radius: 8px; }
+  .src .head { display: flex; gap: 8px; align-items: baseline; }
+  .src .n { font-weight: 700; color: var(--accent); font-size: 12px; }
+  .src .labels { font-family: var(--mono); font-size: 12.5px; }
+  .src blockquote { margin: 6px 0 4px; padding-left: 10px; border-left: 3px solid var(--line);
+                    color: var(--ink); font-size: 13.5px; max-height: 9.5em; overflow: auto; }
+  .src a { font-size: 12px; color: var(--accent); }
+  .hit { border-top: 1px solid var(--line); padding: 8px 0; font-size: 13px; }
+  .hit .crumb { color: var(--muted); font-size: 12px; }
+  .ranks { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  details summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 14px; }
+  .err { color: #c0392b; }
+</style>
+</head>
+<body>
+<header>
+  <h1>RegRAG</h1>
+  <p>Cited answers over Regulation Z, Regulation E and the BSA rules (31 CFR 1010 / 1020), from the eCFR.
+     Hybrid retrieval (pgvector + BM25 → RRF → cross-encoder) and paragraph-level citations.
+     Not legal advice.</p>
+</header>
+<main>
+  <section>
+    <div class="panel">
+      <form id="f">
+        <textarea id="q" placeholder="e.g. How long does a bank have to investigate an error notice under Regulation E?" required></textarea>
+        <select id="mode" title="Retrieval mode">
+          <option value="hybrid_rerank">hybrid + rerank</option>
+          <option value="hybrid">hybrid (RRF)</option>
+          <option value="dense_rerank">dense + rerank</option>
+          <option value="dense">dense only</option>
+          <option value="bm25">BM25 only</option>
+        </select>
+        <button class="primary" id="go" type="submit">Ask</button>
+      </form>
+      <div class="examples" id="ex"></div>
+      <div id="answer"></div>
+      <div class="meta" id="meta"></div>
+    </div>
+    <details class="panel" style="margin-top:14px" id="dbg">
+      <summary>Retrieved context &amp; ranks (debug)</summary>
+      <div id="hits"></div>
+    </details>
+  </section>
+  <aside class="panel">
+    <h2>Sources</h2>
+    <div id="sources"><p style="color:var(--muted);font-size:13.5px">Citations appear here. Each one links to the exact
+      paragraph that supports the sentence, quoted verbatim.</p></div>
+  </aside>
+</main>
+<script>
+const EXAMPLES = [
+  "What is the minimum grace period a card issuer must give under Regulation Z?",
+  "How long does a financial institution have to investigate an EFT error, and when must it provisionally credit?",
+  "What identifying information must a bank obtain under its Customer Identification Program?",
+  "Who counts as a beneficial owner of a legal entity customer?",
+  "Can a card issuer charge a late fee higher than the minimum payment due?",
+];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+for (const e of EXAMPLES) {
+  const b = document.createElement("button"); b.type = "button"; b.textContent = e;
+  b.onclick = () => { $("q").value = e; $("f").requestSubmit(); };
+  $("ex").appendChild(b);
+}
+
+function focusSource(n) {
+  document.querySelectorAll(".src").forEach((el) => el.classList.toggle("active", el.dataset.n == n));
+  const el = document.querySelector(`.src[data-n="${n}"]`);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function render(data) {
+  if (data.abstained) {
+    $("answer").innerHTML = `<div class="abstain">${esc(data.answer)}</div>`;
+  } else {
+    $("answer").innerHTML = data.segments.map((s) =>
+      esc(s.text) + s.citations.map((n) => `<sup class="cite" data-n="${n}" title="Show source">${n}</sup>`).join("")
+    ).join("");
+  }
+  $("answer").querySelectorAll("sup.cite").forEach((el) => el.onclick = () => focusSource(el.dataset.n));
+
+  $("sources").innerHTML = data.citations.length ? data.citations.map((c) => `
+    <div class="src" data-n="${c.n}">
+      <div class="head"><span class="n">[${c.n}]</span><span class="labels">${esc(c.labels.join(", "))}</span></div>
+      <blockquote>${esc(c.cited_text)}</blockquote>
+      <a href="${esc(c.url)}" target="_blank" rel="noopener">View on eCFR ↗</a>
+    </div>`).join("") : `<p style="color:var(--muted)">No citations.</p>`;
+
+  const t = data.timings_ms || {};
+  const ms = (v) => v == null ? "–" : `${Math.round(v)} ms`;
+  $("meta").innerHTML = [
+    `mode: ${esc(data.retrieval.mode)}`,
+    `retrieval: ${ms((t.dense_ms||0)+(t.bm25_ms||0)+(t.rerank_ms||0))}`,
+    `LLM: ${ms(t.llm_ms)}`,
+    `citation coverage: ${Math.round((data.citation_coverage||0)*100)}%`,
+    data.model ? `model: ${esc(data.model)}` : "",
+  ].filter(Boolean).map((s) => `<span>${s}</span>`).join("");
+
+  $("hits").innerHTML = data.retrieval.hits.map((h, i) => `
+    <div class="hit">
+      <div><b>${i + 1}.</b> <span class="crumb">${esc(h.breadcrumb)}</span></div>
+      <div class="ranks">dense #${h.dense_rank ?? "–"} · bm25 #${h.bm25_rank ?? "–"} · fused #${h.fused_rank ?? "–"}
+        ${h.rerank_score != null ? "· rerank " + h.rerank_score.toFixed(2) : ""}</div>
+    </div>`).join("");
+}
+
+$("f").onsubmit = async (ev) => {
+  ev.preventDefault();
+  const question = $("q").value.trim(); if (!question) return;
+  $("go").disabled = true; $("go").textContent = "Thinking…";
+  $("answer").textContent = ""; $("meta").textContent = "";
+  try {
+    const r = await fetch("/ask", { method: "POST", headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ question, mode: $("mode").value }) });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || r.statusText);
+    render(data);
+  } catch (e) {
+    $("answer").innerHTML = `<span class="err">${esc(e.message)}</span>`;
+  } finally {
+    $("go").disabled = false; $("go").textContent = "Ask";
+  }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,1140 @@
+{
+  "rerank_model": "Xenova/ms-marco-MiniLM-L-12-v2",
+  "embed_model": "BAAI/bge-base-en-v1.5",
+  "rerank_pool": 30,
+  "link_expansion": true,
+  "n_answerable": 47,
+  "n_unanswerable": 7,
+  "modes": {
+    "dense_rerank": {
+      "recall@1": 0.404,
+      "hit@1": 0.426,
+      "recall@3": 0.787,
+      "hit@3": 0.809,
+      "recall@5": 0.844,
+      "hit@5": 0.872,
+      "recall@8": 0.872,
+      "hit@8": 0.894,
+      "mrr": 0.612,
+      "ndcg@8": 0.682,
+      "latency_p50_ms": 7178.3,
+      "latency_p95_ms": 9342.3,
+      "by_category": {
+        "definition": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 0.75
+        },
+        "exact-citation": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 1.0
+        },
+        "interpretation": {
+          "n": 3,
+          "recall@8": 0.833,
+          "mrr": 0.667
+        },
+        "list": {
+          "n": 7,
+          "recall@8": 1.0,
+          "mrr": 0.613
+        },
+        "multi-hop": {
+          "n": 4,
+          "recall@8": 0.875,
+          "mrr": 0.688
+        },
+        "numeric": {
+          "n": 20,
+          "recall@8": 0.8,
+          "mrr": 0.528
+        },
+        "numeric-conflict": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 0.333
+        },
+        "rule": {
+          "n": 7,
+          "recall@8": 0.857,
+          "mrr": 0.619
+        },
+        "table-like": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    "hybrid_rerank": {
+      "recall@1": 0.426,
+      "hit@1": 0.447,
+      "recall@3": 0.809,
+      "hit@3": 0.83,
+      "recall@5": 0.865,
+      "hit@5": 0.894,
+      "recall@8": 0.894,
+      "hit@8": 0.915,
+      "mrr": 0.634,
+      "ndcg@8": 0.704,
+      "latency_p50_ms": 7521.9,
+      "latency_p95_ms": 9632.3,
+      "by_category": {
+        "definition": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 0.75
+        },
+        "exact-citation": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 1.0
+        },
+        "interpretation": {
+          "n": 3,
+          "recall@8": 0.833,
+          "mrr": 0.667
+        },
+        "list": {
+          "n": 7,
+          "recall@8": 0.857,
+          "mrr": 0.595
+        },
+        "multi-hop": {
+          "n": 4,
+          "recall@8": 0.875,
+          "mrr": 0.688
+        },
+        "numeric": {
+          "n": 20,
+          "recall@8": 0.9,
+          "mrr": 0.585
+        },
+        "numeric-conflict": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 0.333
+        },
+        "rule": {
+          "n": 7,
+          "recall@8": 0.857,
+          "mrr": 0.619
+        },
+        "table-like": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 1.0
+        }
+      }
+    }
+  },
+  "per_item": {
+    "z-statement-21-days": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "Comment 5(b)(2)(ii)-1",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "Comment 5(b)(2)(ii)-1",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)"
+        ]
+      }
+    },
+    "z-open-end-14-days": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)",
+          "Comment 5(b)(2)(ii)-1.B"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)",
+          "Comment 5(b)(2)(ii)-1.B"
+        ]
+      }
+    },
+    "z-late-fee-safe-harbor": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 52(b)(3)(ii)-1",
+          "Comment 52(b)(1)(ii)-3.iii",
+          "\u00a7 1026.52(b)(1)(ii)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 52(b)(3)(ii)-1",
+          "Comment 52(b)(1)(ii)-3.iii",
+          "\u00a7 1026.52(b)(1)(ii)"
+        ]
+      }
+    },
+    "z-late-fee-min-payment": {
+      "dense_rerank": {
+        "recall@8": 0.5,
+        "mrr": 0.5,
+        "top": [
+          "Comment 52(b)(2)(ii)-1.vii",
+          "Comment 52(b)(2)(i)-1.iii",
+          "Comment 52(b)(2)(i)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.5,
+        "mrr": 0.5,
+        "top": [
+          "Comment 52(b)(2)(ii)-1.vii",
+          "Comment 52(b)(2)(i)-1.iii",
+          "Comment 52(b)(2)(i)-1"
+        ]
+      }
+    },
+    "z-no-dollar-amount-fees": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.52(b)(2)(i)(A)",
+          "Comment 52(b)(2)(i)-7",
+          "Comment 52(b)(2)(i)-3.ii"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.52(b)(2)(i)(A)",
+          "Comment 52(b)(2)(i)-7",
+          "Comment 52(b)(2)(i)-3.ii"
+        ]
+      }
+    },
+    "z-billing-error-timeline": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.13(c)(1)",
+          "\u00a7 1026.13(b)",
+          "Comment 13(c)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.13(c)(1)",
+          "\u00a7 1026.13(b)",
+          "Comment 13(c)-1"
+        ]
+      }
+    },
+    "z-unauthorized-card-50": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.12(a)",
+          "Comment 12(b)(1)(ii)-1",
+          "Comment 12(b)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.12(a)",
+          "Comment 12(b)(1)(ii)-1",
+          "Comment 12(b)-1"
+        ]
+      }
+    },
+    "z-payment-allocation": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.53(a)",
+          "Comment 53-5",
+          "Comment 53-2"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.53(a)",
+          "Comment 53-5",
+          "Comment 53-2"
+        ]
+      }
+    },
+    "z-over-limit-opt-in": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 56(j)-1",
+          "\u00a7 1026.56(j)(4)",
+          "\u00a7 1026.56(a)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 56(j)-1",
+          "\u00a7 1026.56(j)(4)",
+          "\u00a7 1026.56(a)"
+        ]
+      }
+    },
+    "z-record-retention": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 25(c)(2)-1",
+          "\u00a7 1026.25(a)",
+          "\u00a7 1026.25(c)(2)(ii)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 25(c)(2)-1",
+          "\u00a7 1026.25(a)",
+          "\u00a7 1026.25(c)(2)(ii)"
+        ]
+      }
+    },
+    "z-loan-estimate-timing": {
+      "dense_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 19(e)-5",
+          "Comment 19(e)-5.i",
+          "Comment 19(e)-3"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.14285714285714285,
+        "top": [
+          "Comment 19(e)-5",
+          "Comment 19(e)-5.i",
+          "Comment 19(e)-3"
+        ]
+      }
+    },
+    "z-closing-disclosure-timing": {
+      "dense_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 19(e)-2",
+          "Comment 20(b)-1",
+          "Comment 19(a)(2)(i)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 19(e)-2",
+          "Comment 20(b)-1",
+          "Comment 19(a)(2)(i)-1"
+        ]
+      }
+    },
+    "z-rescission-window": {
+      "dense_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 17(b)-1",
+          "\u00a7 1026.36(c)(2)",
+          "Comment 15(a)(1)-5"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.23(a)(1)",
+          "Comment 17(b)-1",
+          "\u00a7 1026.36(c)(2)"
+        ]
+      }
+    },
+    "z-material-disclosures": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.23(a)(3)(ii)",
+          "Comment 23(f)-5",
+          "Comment 15(a)(3)-2"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.23(a)(3)(ii)",
+          "Comment 23(f)-5",
+          "Comment 15(a)(3)-2"
+        ]
+      }
+    },
+    "z-hoepa-apr-trigger": {
+      "dense_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 35(b)(2)(iii)-2.iii.D",
+          "Comment 35(b)(2)(vi)(A)-1",
+          "Comment 32(a)-3"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 35(b)(2)(iii)-2.iii.D",
+          "Comment 35(b)(2)(vi)(A)-1",
+          "Comment 32(a)-3"
+        ]
+      }
+    },
+    "z-atr-factors": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.125,
+        "top": [
+          "Comment 43(b)(8)-1",
+          "Comment 43(b)(8)-1",
+          "Comment 43(b)(8)-6.C"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 43(b)(8)-1",
+          "Comment 43(b)(8)-1",
+          "Comment 43(b)(8)-6.C"
+        ]
+      }
+    },
+    "z-qm-points-fees": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.43(e)(2)(vi)(E)",
+          "Comment 43(e)(2)(v)(B)-3.ii",
+          "Comment 43(e)(2)(v)(B)-2.i"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.43(e)(2)(vi)(E)",
+          "Comment 43(e)(2)(v)(B)-3.ii",
+          "Comment 43(e)(2)(v)(B)-2.i"
+        ]
+      }
+    },
+    "z-small-servicer": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 41-2",
+          "\u00a7 1026.41(e)(4)(ii)(C)",
+          "Comment 41-2"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 41-2",
+          "\u00a7 1026.41(e)(4)(ii)(C)",
+          "Comment 41-2"
+        ]
+      }
+    },
+    "z-ability-to-pay-cards": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 51(a)(1)(i)-4.i",
+          "\u00a7 1026.51(a)(1)(i)",
+          "Comment 51(a)(1)(i)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 51(a)(1)(i)-4.i",
+          "\u00a7 1026.51(a)(1)(i)",
+          "\u00a7 1026.60(b)(14)"
+        ]
+      }
+    },
+    "z-under-21": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.51(b)(1)",
+          "Comment 51(b)(2)-2",
+          "Comment 51(a)(1)(i)-4.i"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.51(b)(1)",
+          "Comment 51(b)(2)-2",
+          "Comment 51(a)(1)(i)-4.i"
+        ]
+      }
+    },
+    "z-promo-rate-6-months": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 55(b)(1)-1",
+          "\u00a7 1026.55(b)",
+          "Comment 55(e)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 55(b)(1)-1",
+          "\u00a7 1026.55(b)",
+          "Comment 55(e)-1"
+        ]
+      }
+    },
+    "z-change-in-terms-45": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 9(c)(2)-4",
+          "Comment 9(c)(2)(iii)-1",
+          "\u00a7 1026.9(f)(1)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 9(c)(2)-4",
+          "Comment 9(c)(2)(iii)-1",
+          "\u00a7 1026.9(f)(1)"
+        ]
+      }
+    },
+    "z-college-inducements": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 57(c)-1",
+          "Comment 57(c)-5",
+          "\u00a7 1026.57(a)(1)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 57(c)-1",
+          "Comment 57(c)-5",
+          "\u00a7 1026.57(a)(1)"
+        ]
+      }
+    },
+    "z-agreement-submission": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 58(c)(1)-1",
+          "\u00a7 1026.58(c)(1)",
+          "Comment 58(c)(4)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 58(c)(1)-1",
+          "\u00a7 1026.58(c)(1)",
+          "Comment 58(c)(4)-1"
+        ]
+      }
+    },
+    "z-deferred-interest-grace": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-1.ii",
+          "Comment 5(b)(2)(ii)-3"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-1.ii",
+          "Comment 5(b)(2)(ii)-3"
+        ]
+      }
+    },
+    "z-trailing-interest": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 60(b)(5)-1",
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-2.ii"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 60(b)(5)-1",
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-2.ii"
+        ]
+      }
+    },
+    "z-cite-lookup-54": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 12(b)(2)(ii)-1",
+          "Comment 7(b)(12)(iv)-6"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-2.ii.C",
+          "Comment 1(c)-2.A"
+        ]
+      }
+    },
+    "z-cite-lookup-comment": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 52(b)(2)(i)-1",
+          "Comment 52(b)(1)-1.i.C",
+          "Comment 52(b)(1)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 52(b)(2)(i)-1",
+          "Comment 52(b)(1)-1.i.C",
+          "Comment 52(b)(1)(ii)-2.i.D"
+        ]
+      }
+    },
+    "e-error-investigation": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(1)",
+          "Comment 18(e)-1",
+          "Comment 11(c)-6"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(1)",
+          "Comment 18(e)-1",
+          "Comment 11(c)-6"
+        ]
+      }
+    },
+    "e-error-new-account": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(2)(iv)",
+          "Comment 11(c)-6",
+          "Appendix A to Part 1005 \u2014 A-3\u2014Model Forms for Error Resolution Notice (\u00a7\u00a7 1005.7(b)(10) and 1005.8(b))"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(2)(iv)",
+          "Comment 11(c)-6",
+          "Appendix A to Part 1005 \u2014 A-7\u2014Model Clauses for Financial Institutions Offering Prepaid Accounts (\u00a7 1005.18(d) and (e)(3))"
+        ]
+      }
+    },
+    "e-provisional-credit-withhold": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(1)",
+          "Comment 11(b)(1)-7",
+          "Comment 11(c)(4)-5"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(1)",
+          "Comment 11(b)(1)-7",
+          "Comment 11(c)(4)-5"
+        ]
+      }
+    },
+    "e-liability-tiers": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.25,
+        "top": [
+          "Comment 6(b)(3)-1",
+          "Comment 6(b)(2)-1",
+          "Comment 6(b)(1)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.25,
+        "top": [
+          "Comment 6(b)(3)-1",
+          "Comment 6(b)(2)-1",
+          "Comment 6(b)(1)-1"
+        ]
+      }
+    },
+    "e-negligence-pin": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 6(a)-1",
+          "Comment 5(b)-1",
+          "Comment 12(d)(1)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 6(a)-1",
+          "Comment 5(b)-1",
+          "\u00a7 1005.17(b)(1)"
+        ]
+      }
+    },
+    "e-overdraft-opt-in": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1005.17(c)(1)",
+          "\u00a7 1005.17(b)(1)",
+          "Comment 17(b)-9.iii"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1005.17(c)(1)",
+          "\u00a7 1005.17(b)(1)",
+          "Comment 17(b)-9.iii"
+        ]
+      }
+    },
+    "e-gift-card-expiration": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 20(e)-12",
+          "Comment 20(e)-8",
+          "\u00a7 1005.20(e)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 20(e)-12",
+          "Comment 20(e)-8",
+          "\u00a7 1005.20(e)"
+        ]
+      }
+    },
+    "e-remittance-error-180": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 33(e)-1",
+          "\u00a7 1005.33(c)(1)",
+          "Comment 33(g)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 33(e)-1",
+          "\u00a7 1005.33(c)(1)",
+          "Comment 33(g)-1"
+        ]
+      }
+    },
+    "e-remittance-cancel-30": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.34(a)",
+          "Comment 34(a)-3",
+          "\u00a7 1005.36(c)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.34(a)",
+          "Comment 34(a)-3",
+          "\u00a7 1005.36(c)"
+        ]
+      }
+    },
+    "e-stop-payment": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.10(c)(1)",
+          "Comment 10(c)-1",
+          "\u00a7 1005.10(d)(1)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.10(c)(1)",
+          "Comment 10(c)-1",
+          "\u00a7 1005.10(d)(1)"
+        ]
+      }
+    },
+    "e-receipt-15": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 9(a)-1",
+          "\u00a7 1005.9(c)(1)",
+          "Comment 2(h)-1"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 9(a)-1",
+          "\u00a7 1005.9(c)(1)",
+          "Comment 2(h)-1"
+        ]
+      }
+    },
+    "e-prepaid-120": {
+      "dense_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 13(b)(1)-1",
+          "Comment 18(e)-1",
+          "\u00a7 1005.18(c)(1)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 13(b)(1)-1",
+          "Comment 18(e)-1",
+          "\u00a7 1005.18(c)(1)"
+        ]
+      }
+    },
+    "b-cip-info": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.220(a)(2)(i)(A)(3)(ii)",
+          "\u00a7 1020.220(a)(3)(i)(A)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.220(a)(2)(i)(A)(3)(ii)",
+          "\u00a7 1020.220(a)(3)(i)(A)"
+        ]
+      }
+    },
+    "b-cip-retention": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(3)(i)(A)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.410(b)(1)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(3)(i)(A)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.410(b)(1)"
+        ]
+      }
+    },
+    "b-beneficial-owner": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1010.230(d)",
+          "\u00a7 1010.230(e)",
+          "\u00a7 1010.230(a)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1010.230(d)",
+          "\u00a7 1010.230(e)",
+          "\u00a7 1010.230(a)"
+        ]
+      }
+    },
+    "b-ctr": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1020.310",
+          "\u00a7 1010.311",
+          "\u00a7 1010.310"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1020.310",
+          "\u00a7 1010.311",
+          "\u00a7 1010.310"
+        ]
+      }
+    },
+    "b-sar-threshold-timing": {
+      "dense_rerank": {
+        "recall@8": 0.5,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.320(b)(1)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.220(a)(3)(i)(A)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 0.5,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.320(b)(1)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.220(a)(3)(i)(A)"
+        ]
+      }
+    },
+    "b-aml-pillars": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.210(b)",
+          "\u00a7 1020.210(a)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.210(b)",
+          "\u00a7 1020.210(a)"
+        ]
+      }
+    },
+    "b-record-retention": {
+      "dense_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "\u00a7 1020.320(d)",
+          "\u00a7 1026.25(a)",
+          "\u00a7 1010.430(d)"
+        ]
+      },
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "\u00a7 1020.320(d)",
+          "\u00a7 1026.25(a)",
+          "\u00a7 1010.430(d)"
+        ]
+      }
+    }
+  },
+  "abstention": {
+    "answerable_top_scores": [
+      6.101,
+      3.565,
+      5.875,
+      5.628,
+      4.474,
+      6.785,
+      6.23,
+      4.762,
+      7.213,
+      9.495,
+      6.109,
+      7.572,
+      4.374,
+      4.829,
+      2.756,
+      6.556,
+      2.785,
+      5.956,
+      6.207,
+      6.315,
+      4.909,
+      4.639,
+      7.529,
+      5.468,
+      7.003,
+      5.39,
+      3.93,
+      6.862,
+      6.785,
+      5.011,
+      0.398,
+      6.233,
+      0.769,
+      5.78,
+      5.769,
+      7.749,
+      7.759,
+      8.355,
+      5.198,
+      6.427,
+      6.362,
+      7.12,
+      7.588,
+      4.559,
+      7.709,
+      4.173,
+      6.723
+    ],
+    "unanswerable_top_scores": [
+      3.515,
+      -4.083,
+      -6.72,
+      -2.865,
+      -6.191,
+      4.902,
+      -2.09
+    ],
+    "calibration": {
+      "threshold": 3.565208911895752,
+      "balanced_accuracy": 0.8860182370820668,
+      "abstain_rate_unanswerable": 0.8571428571428571,
+      "answer_rate_answerable": 0.9148936170212766
+    }
+  }
+}

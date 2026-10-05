@@ -1,0 +1,656 @@
+{
+  "rerank_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+  "embed_model": "BAAI/bge-base-en-v1.5",
+  "rerank_pool": 20,
+  "structural_boosts": true,
+  "n_answerable": 47,
+  "n_unanswerable": 7,
+  "modes": {
+    "hybrid_rerank": {
+      "recall@1": 0.383,
+      "hit@1": 0.404,
+      "recall@3": 0.67,
+      "hit@3": 0.702,
+      "recall@5": 0.77,
+      "hit@5": 0.809,
+      "recall@8": 0.904,
+      "hit@8": 0.936,
+      "mrr": 0.585,
+      "ndcg@8": 0.672,
+      "latency_p50_ms": 2577.2,
+      "latency_p95_ms": 3508.1,
+      "by_category": {
+        "definition": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 0.625
+        },
+        "exact-citation": {
+          "n": 2,
+          "recall@8": 1.0,
+          "mrr": 1.0
+        },
+        "interpretation": {
+          "n": 3,
+          "recall@8": 0.667,
+          "mrr": 0.611
+        },
+        "list": {
+          "n": 7,
+          "recall@8": 1.0,
+          "mrr": 0.583
+        },
+        "multi-hop": {
+          "n": 4,
+          "recall@8": 0.875,
+          "mrr": 0.592
+        },
+        "numeric": {
+          "n": 20,
+          "recall@8": 0.9,
+          "mrr": 0.565
+        },
+        "numeric-conflict": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 0.2
+        },
+        "rule": {
+          "n": 7,
+          "recall@8": 0.857,
+          "mrr": 0.565
+        },
+        "table-like": {
+          "n": 1,
+          "recall@8": 1.0,
+          "mrr": 0.5
+        }
+      }
+    }
+  },
+  "per_item": {
+    "z-statement-21-days": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)",
+          "Comment 5(b)(2)(ii)-1"
+        ]
+      }
+    },
+    "z-open-end-14-days": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.5(b)(2)(i)",
+          "\u00a7 1026.5(b)(2)(ii)(B)(1)(ii)",
+          "Comment 5(b)(2)(ii)-1"
+        ]
+      }
+    },
+    "z-late-fee-safe-harbor": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 52(b)(1)(ii)-3.iii",
+          "Comment 52(b)(1)(ii)-2.B",
+          "Comment 52(b)(1)(ii)-2.C"
+        ]
+      }
+    },
+    "z-late-fee-min-payment": {
+      "hybrid_rerank": {
+        "recall@8": 0.5,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 52(b)(2)(ii)-1.vii",
+          "Comment 52(b)(2)(ii)-1.i.A",
+          "Comment 52(b)(2)(i)-1"
+        ]
+      }
+    },
+    "z-no-dollar-amount-fees": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.52(b)(2)(i)(A)",
+          "Comment 52(b)(2)(i)-7",
+          "\u00a7 1026.52(b)"
+        ]
+      }
+    },
+    "z-billing-error-timeline": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.13(c)(1)",
+          "\u00a7 1026.13(b)",
+          "Comment 13(c)-1"
+        ]
+      }
+    },
+    "z-unauthorized-card-50": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.12(a)",
+          "Comment 12(b)(1)(ii)-1",
+          "Comment 12(b)-1"
+        ]
+      }
+    },
+    "z-payment-allocation": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.53(a)",
+          "Comment 53-2",
+          "Comment 53-5"
+        ]
+      }
+    },
+    "z-over-limit-opt-in": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.125,
+        "top": [
+          "Comment 56(j)-1",
+          "Comment 56(b)-5",
+          "Comment 56(g)-1"
+        ]
+      }
+    },
+    "z-record-retention": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 25(c)(2)-1",
+          "\u00a7 1026.25(a)",
+          "\u00a7 1026.25(c)(2)(ii)"
+        ]
+      }
+    },
+    "z-loan-estimate-timing": {
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 19(e)-5.i",
+          "Comment 19(e)-5",
+          "Comment 19(e)-3"
+        ]
+      }
+    },
+    "z-closing-disclosure-timing": {
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 19(e)-2",
+          "Comment 31(c)-1",
+          "Comment 19(e)-2"
+        ]
+      }
+    },
+    "z-rescission-window": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.23(a)(1)",
+          "Comment 17(b)-1",
+          "Comment 3(b)-6.i"
+        ]
+      }
+    },
+    "z-material-disclosures": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.23(a)(3)(ii)",
+          "Comment 23(f)-5",
+          "Comment 15(a)(3)-2"
+        ]
+      }
+    },
+    "z-hoepa-apr-trigger": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.125,
+        "top": [
+          "Comment 32(a)-3",
+          "Comment 34(a)(4)(iv)-1",
+          "Comment 35(b)(2)(iii)-2.iii.D"
+        ]
+      }
+    },
+    "z-atr-factors": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.125,
+        "top": [
+          "Comment 43(b)(8)-1",
+          "Comment 43(b)(8)-1",
+          "Comment 43(e)(2)(v)(A)"
+        ]
+      }
+    },
+    "z-qm-points-fees": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 43(e)(2)(v)(B)-1.i",
+          "\u00a7 1026.43(e)(2)(vi)(E)",
+          "Comment 43(e)(2)(v)(B)-1.iii.A"
+        ]
+      }
+    },
+    "z-small-servicer": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.25,
+        "top": [
+          "Comment 41-2",
+          "Comment 41-2",
+          "Comment 41-3"
+        ]
+      }
+    },
+    "z-ability-to-pay-cards": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.51(a)(1)(i)",
+          "\u00a7 1026.60(b)(14)",
+          "Comment 52(a)(1)-3.ii"
+        ]
+      }
+    },
+    "z-under-21": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.51(b)(1)",
+          "Comment 51(b)(2)-2",
+          "Comment 51(a)(1)(i)-4.i"
+        ]
+      }
+    },
+    "z-promo-rate-6-months": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.125,
+        "top": [
+          "Comment 55(b)(1)-1",
+          "Comment 59(f)-1.ii.A",
+          "Comment 55(b)(1)-2.viii"
+        ]
+      }
+    },
+    "z-change-in-terms-45": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.25,
+        "top": [
+          "\u00a7 1026.9(f)(1)",
+          "Comment 9(c)(2)-4",
+          "\u00a7 1026.9(c)(2)(iv)(B)(3)"
+        ]
+      }
+    },
+    "z-college-inducements": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "Comment 57(c)-1",
+          "Comment 57(c)-5",
+          "\u00a7 1026.57(a)(1)"
+        ]
+      }
+    },
+    "z-agreement-submission": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.58(c)(1)",
+          "Comment 58(c)(1)-1",
+          "Comment 58(c)(4)-1"
+        ]
+      }
+    },
+    "z-deferred-interest-grace": {
+      "hybrid_rerank": {
+        "recall@8": 0.5,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 54(a)(1)-1.ii",
+          "Comment 7(b)(8)-1"
+        ]
+      }
+    },
+    "z-trailing-interest": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.16666666666666666,
+        "top": [
+          "Comment 60(b)(5)-1",
+          "Comment 54(a)(1)-3",
+          "Comment 54(a)(1)-2.ii"
+        ]
+      }
+    },
+    "z-cite-lookup-54": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1026.54(a)(1)",
+          "Comment 1(c)-2.A",
+          "Comment 54(a)(1)-1.i.A"
+        ]
+      }
+    },
+    "z-cite-lookup-comment": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 52(b)(2)(i)-1",
+          "Comment 52(b)(1)-1",
+          "Comment 52(b)(1)-7.ii"
+        ]
+      }
+    },
+    "e-error-investigation": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 18(e)-1",
+          "\u00a7 1005.11(c)(1)",
+          "Comment 11(c)-6"
+        ]
+      }
+    },
+    "e-error-new-account": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.11(c)(2)(iv)",
+          "Comment 11(c)-6",
+          "Appendix A to Part 1005 \u2014 A-3\u2014Model Forms for Error Resolution Notice (\u00a7\u00a7 1005.7(b)(10) and 1005.8(b))"
+        ]
+      }
+    },
+    "e-provisional-credit-withhold": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 11(b)(1)-7",
+          "\u00a7 1005.11(c)(1)",
+          "Comment 11(c)(4)-5"
+        ]
+      }
+    },
+    "e-liability-tiers": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.2,
+        "top": [
+          "Comment 6(b)(1)-1",
+          "Comment 6(b)(2)-1",
+          "Comment 6(b)(3)-1"
+        ]
+      }
+    },
+    "e-negligence-pin": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "Comment 6(a)-1",
+          "Comment 5(b)-1",
+          "Comment 12(d)(1)-1"
+        ]
+      }
+    },
+    "e-overdraft-opt-in": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1005.17(c)(1)",
+          "\u00a7 1005.17(b)(1)",
+          "Comment 17(b)-1.iv"
+        ]
+      }
+    },
+    "e-gift-card-expiration": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 20(e)-12",
+          "\u00a7 1005.20(e)",
+          "Comment 20(e)-8"
+        ]
+      }
+    },
+    "e-remittance-error-180": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.25,
+        "top": [
+          "Comment 33(e)-1",
+          "Comment 33(b)-4",
+          "\u00a7 1005.33(c)(1)"
+        ]
+      }
+    },
+    "e-remittance-cancel-30": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 34(a)-3",
+          "\u00a7 1005.34(a)",
+          "\u00a7 1005.36(c)"
+        ]
+      }
+    },
+    "e-stop-payment": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1005.10(c)(1)",
+          "Comment 10(c)-1",
+          "\u00a7 1005.10(d)(1)"
+        ]
+      }
+    },
+    "e-receipt-15": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "Comment 9(a)-1",
+          "\u00a7 1005.9(c)(1)",
+          "\u00a7 1005.9(a)"
+        ]
+      }
+    },
+    "e-prepaid-120": {
+      "hybrid_rerank": {
+        "recall@8": 0.0,
+        "mrr": 0.0,
+        "top": [
+          "Comment 13(b)(1)-1",
+          "Appendix A to Part 1005 \u2014 A-7\u2014Model Clauses for Financial Institutions Offering Prepaid Accounts (\u00a7 1005.18(d) and (e)(3))",
+          "\u00a7 1005.11(b)(1)"
+        ]
+      }
+    },
+    "b-cip-info": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.220(a)(2)(i)(A)(3)(ii)",
+          "\u00a7 1020.220(a)(2)(ii)(B)(2)"
+        ]
+      }
+    },
+    "b-cip-retention": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.220(a)(3)(i)(A)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.410(b)(1)"
+        ]
+      }
+    },
+    "b-beneficial-owner": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1010.230(d)",
+          "\u00a7 1010.230(e)",
+          "\u00a7 1010.230(a)"
+        ]
+      }
+    },
+    "b-ctr": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.16666666666666666,
+        "top": [
+          "\u00a7 1010.310",
+          "\u00a7 1020.310",
+          "\u00a7 1010.330(b)"
+        ]
+      }
+    },
+    "b-sar-threshold-timing": {
+      "hybrid_rerank": {
+        "recall@8": 0.5,
+        "mrr": 1.0,
+        "top": [
+          "\u00a7 1020.320(b)(1)",
+          "\u00a7 1020.320(d)",
+          "\u00a7 1020.320(e)"
+        ]
+      }
+    },
+    "b-aml-pillars": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.3333333333333333,
+        "top": [
+          "\u00a7 1020.220(a)(1)",
+          "\u00a7 1020.210(b)",
+          "\u00a7 1020.210(a)"
+        ]
+      }
+    },
+    "b-record-retention": {
+      "hybrid_rerank": {
+        "recall@8": 1.0,
+        "mrr": 0.5,
+        "top": [
+          "\u00a7 1020.320(d)",
+          "\u00a7 1010.430(d)",
+          "\u00a7 1026.25(a)"
+        ]
+      }
+    }
+  },
+  "abstention": {
+    "answerable_top_scores": [
+      6.067,
+      3.659,
+      5.736,
+      5.324,
+      4.505,
+      6.36,
+      6.112,
+      4.575,
+      6.26,
+      9.115,
+      5.91,
+      6.604,
+      3.788,
+      3.573,
+      0.424,
+      5.837,
+      1.755,
+      5.581,
+      5.194,
+      5.913,
+      3.264,
+      3.504,
+      7.183,
+      5.99,
+      6.378,
+      5.104,
+      3.072,
+      5.699,
+      6.326,
+      3.746,
+      0.182,
+      5.827,
+      1.374,
+      5.343,
+      4.915,
+      7.751,
+      7.665,
+      7.703,
+      4.373,
+      6.5,
+      6.025,
+      5.403,
+      6.815,
+      4.574,
+      5.46,
+      2.549,
+      5.523
+    ],
+    "unanswerable_top_scores": [
+      3.034,
+      -3.729,
+      -5.202,
+      -4.175,
+      -8.245,
+      5.105,
+      -3.117
+    ],
+    "calibration": {
+      "threshold": 3.071665048599243,
+      "balanced_accuracy": 0.8753799392097263,
+      "abstain_rate_unanswerable": 0.8571428571428571,
+      "answer_rate_answerable": 0.8936170212765957
+    }
+  }
+}
