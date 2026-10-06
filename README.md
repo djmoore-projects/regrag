@@ -25,31 +25,33 @@ with the supporting text quoted verbatim.
 ## Architecture
 
 ```mermaid
-flowchart LR
-    subgraph Ingest["Ingest (python -m regrag.ingest)"]
-        X[eCFR XML<br/>Reg Z, Reg E, 31 CFR 1010/1020] --> P[Parser<br/>rebuilds (a)(1)(i) hierarchy,<br/>comment labels, tables→Markdown]
-        P --> C[Structure-aware chunker<br/>13,299 paragraphs → 3,502 chunks]
-        C --> E[bge-base-en-v1.5<br/>ONNX, CPU]
+flowchart TB
+    subgraph Ingest["Ingest: python -m regrag.ingest"]
+        direction LR
+        X["eCFR XML<br/>Reg Z, Reg E, 31 CFR 1010/1020"] --> P["Parser<br/>rebuilds (a)(1)(i) hierarchy,<br/>comment labels, tables to Markdown"]
+        P --> C["Structure-aware chunker<br/>13,299 paragraphs → 3,502 chunks"]
+        C --> E["bge-base-en-v1.5<br/>ONNX, CPU"]
     end
-    E --> PG[(Postgres + pgvector<br/>HNSW)]
-    C --> BM[BM25 index<br/>citation-aware tokenizer]
+    E --> PG[("Postgres + pgvector<br/>HNSW")]
+    C --> BM["BM25 index<br/>citation-aware tokenizer"]
 
-    subgraph Query["/ask"]
-        Q[Question] --> D[Dense top-50]
-        Q --> K[BM25 top-50]
-        D --> F[RRF fusion]
+    subgraph Query["POST /ask"]
+        direction LR
+        Q["Question"] --> D["Dense top-50"]
+        Q --> K["BM25 top-50"]
+        D --> F["RRF fusion"]
         K --> F
-        F --> R[Cross-encoder rerank<br/>MiniLM-L-12, pool 30<br/>+ linked rule text]
-        Q -. explicit citation .-> PIN[Pin cited paragraph]
-        R --> G{top score < 0?}
+        F --> R["Cross-encoder rerank<br/>MiniLM-L-12, pool 30<br/>+ linked rule text"]
+        Q -. "explicit citation" .-> PIN["Pin cited paragraph"]
+        R --> G{"top score &lt; 0?"}
         PIN --> G
-        G -- yes --> A0[Abstain<br/>no LLM call]
-        G -- no --> LLM[Claude Opus 5.5<br/>search_result blocks,<br/>one per paragraph]
-        LLM --> OUT[Answer + paragraph-level citations]
+        G -- "yes" --> A0["Abstain<br/>no LLM call"]
+        G -- "no" --> LLM["Claude Opus 5.5<br/>search_result blocks,<br/>one per paragraph"]
+        LLM --> OUT["Answer + paragraph-level citations"]
     end
     PG --> D
     BM --> K
-    Query -. OTel spans .-> PH[Arize Phoenix]
+    Query -. "OTel spans" .-> PH["Arize Phoenix"]
 ```
 
 ## Why this corpus is hard
